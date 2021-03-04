@@ -1,18 +1,11 @@
 <template>
-
-	<Todos />
-
+	<router-view/>
 </template>
 
 <script>
-import Todos from './components/Todos.vue'
-
-export default {
-	name: 'App',
-	components: {
-		Todos
+	export default {
+		name: 'App'
 	}
-}
 </script>
 
 <style>

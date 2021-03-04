@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+
 import Todos from '../components/Todos.vue'
 
 const routes = [
@@ -13,7 +14,5 @@ const router = createRouter({
 	history: createWebHashHistory(),
 	routes
 })
-
-
 
 export default router
