@@ -1,7 +1,6 @@
 <template>
 
-
-  <Todos />
+	<Todos />
 
 </template>
 
@@ -9,10 +8,10 @@
 import Todos from './components/Todos.vue'
 
 export default {
-  name: 'App',
-  components: {
-    Todos
-  }
+	name: 'App',
+	components: {
+		Todos
+	}
 }
 </script>
 
