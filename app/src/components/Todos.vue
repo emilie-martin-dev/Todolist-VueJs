@@ -31,7 +31,7 @@
 	export default defineComponent({
 		data () {
 			return {
-				addTodoCompleted: true,
+				addTodoCompleted: false,
 				addTodoName:'',
 				filter: 'all'
 			}

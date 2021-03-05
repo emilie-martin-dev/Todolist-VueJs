@@ -7,7 +7,7 @@ export function ajouter(state, {name, completed}){
 		{
 			id: (state.todolist[0].todos.length+1),
 			name: name,
-			completed: (completed)
+			completed: completed
 		}
 	);
 }

@@ -1,7 +1,5 @@
 export function remaining(state){
-	return state.todolist[0].todos.filter(function (todo){
-		return !todo.completed
-	}).length
+	return state.todolist[0].todos.filter((todo) => !todo.completed).length
 }
 
 export function hasTodos(state){
@@ -9,8 +7,7 @@ export function hasTodos(state){
 }
 
 export function filteredTodos(state){
-	return function(filter) {	
-		console.log(filter)
+	return function(filter) {
 		if(filter === 'todo'){
 			return state.todolist[0].todos.filter(todo => !todo.completed)
 		} else if (filter === 'done'){
