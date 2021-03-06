@@ -4,11 +4,10 @@
 		<ul>
 			<li v-for="todo in filteredTodosArg" :key="todo.name">
 				<input type="checkbox" :id="'checkbox-' + todo.id" v-model=todo.completed>
-				<label :for="'checkbox-' + todo.id">{{todo.id}} | Nom de la tache: {{todo.name}} - Completer:{{ (todo.completed == false ? 'non' : 'oui')}} </label>
-
+				<label :for="'checkbox-' + todo.id">{{todo.id}} | </label>
+				<label v-on:click="update(todo)" v-bind:id="todo.name"> {{todo.name}} </label>
 				<button v-on:click="decrease(todo)" >Supprimer la todo</button>
-				<button v-on:click="update(todo)" >Modifier la todo</button>
-				<input type="texte" placeholder="Nom de la tache">
+
 			</li>
 		</ul>
 
@@ -21,6 +20,7 @@
 		<button v-on:click.prevent="filter = 'done' ">tache complétées</button>
 		<button v-on:click.prevent="filter = 'todo' ">tache en cours</button>
 		<button v-on:click.prevent="filter = 'all' ">toute tacher</button>
+
 	</div>
 </template>
 
