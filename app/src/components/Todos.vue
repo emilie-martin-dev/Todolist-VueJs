@@ -49,7 +49,7 @@
 				input.addEventListener('keydown', function submit(e){
 					if(e.code == "Enter"){
 						//mise à jour su store
-						store.commit('todolist/update',{index: todo, value: input.value});
+						store.commit('todolist/update',{todo: todo, value: input.value});
 						//mise à jour de l'élément li
 						li.innerText = input.value;
 						input.parentNode.replaceChild(li, input);

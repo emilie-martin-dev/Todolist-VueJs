@@ -17,6 +17,6 @@ export function ajouter(state, {name, completed}){
 	);
 }
 
-export function update(state, {index,value}){
-	state.todolist[0].todos[state.todolist[0].todos.indexOf(index)].name = value;
+export function update(state, {todo, value}){
+	state.todolist[0].todos[state.todolist[0].todos.indexOf(todo)].name = value;
 }
