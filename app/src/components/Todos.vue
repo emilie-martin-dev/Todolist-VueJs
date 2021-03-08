@@ -1,7 +1,8 @@
 <template>
     <div>
-        <li v-for="todolist in listTodos" :key="todolist.id">
+        <li v-for="todolist in forListTodos" :key="todolist.id">
         <button v-on:click.prevent="filterList = todolist.id">Liste n°{{todolist.id}}: {{todolist.name}}</button>
+
         </li>
     </div>
 
@@ -46,15 +47,15 @@
 			}
 		},
 		methods: {
-			...mapMutations("todolist", ["decrease", "ajouter", "update"])
+			...mapMutations("todolist", ["decrease", "ajouter", "update", "viewListTodo"]),
 		},
 		computed:{
-			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos", "ListTodos"]),
+			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos", "listTodos"]),
 			filteredTodosArg() {
 				return this.filteredTodos(this.filterTodo, this.filterList);
 			},
-            listTodos() {
-				return this.ListTodos(this.filterList);
+            forListTodos() {
+				return this.listTodos();
 			}
 		}
 	});

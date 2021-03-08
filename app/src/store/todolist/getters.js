@@ -18,13 +18,8 @@ export function filteredTodos(state){
 	}
 }
 
-export function ListTodos(state){
-    return function(filterList) {
-        for(var i = 0; i < state.todolist.length -1 ; i++){
-            if(filterList === i){
-                return state.todolist
-            }
-        }
+export function listTodos(state){
+    return function() {
 		return state.todolist
 	}
 }

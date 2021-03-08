@@ -1,17 +1,17 @@
-export function decrease(state, index){
-	state.todolist[0].todos.splice(state.todolist[0].todos.indexOf(index), 1);
+export function decrease(state, filterList, index){
+	state.todolist[filterList].todos.splice(state.todolist[filterList].todos.indexOf(index), 1);
 }
 
-export function ajouter(state, {name, completed}){
-	state.todolist[0].todos.push(
+export function ajouter(state, filterList, {name, completed}){
+	state.todolist[filterList].todos.push(
 		{
-			id: (state.todolist[0].todos.length+1),
+			id: (state.todolist[filterList].todos.length+1),
 			name: name,
 			completed: completed
 		}
 	);
 }
 
-export function update(state, index){
-	state.todolist[0].todos.splice(state.todolist[0].todos.indexOf(index),1);
+export function update(state, filterList, index){
+	state.todolist[filterList].todos.splice(state.todolist[filterList].todos.indexOf(index),1);
 }
