@@ -5,7 +5,7 @@
 			<li v-for="todo in filteredTodosArg" :key="todo.name">
 				<input type="checkbox" :id="'checkbox-' + todo.id" v-model=todo.completed>
 				<label :for="'checkbox-' + todo.id">{{todo.id}} | </label>
-				<label v-on:click="transform(todo)" v-bind:id="todo.name"> {{todo.name}} </label>
+				<label v-on:click="transform(todo)" v-bind:id="todo.id"> {{todo.name}} </label>
 				<button v-on:click="decrease(todo)" >Supprimer la todo</button>
 
 			</li>
@@ -40,25 +40,24 @@
 			...mapMutations("todolist", ["decrease", "ajouter","update"]),
 
 			transform(todo){
-				let li =  document.getElementById(todo.name);
+				let li = document.getElementById(todo.id);
 				//création d'un input de type texte
 				let input = document.createElement('input');
-				input.setAttribute('type','text');
-				input.setAttribute('value',li.innerText);
+				input.setAttribute('type', 'text');
+				input.setAttribute('value', li.innerText);
 				//affectation d'une fonction à l'input
-				input.addEventListener('keydown',submit);
-				function submit(e){
+				input.addEventListener('keydown', function submit(e){
 					if(e.code == "Enter"){
 						//mise à jour su store
 						store.commit('todolist/update',{index: todo, value: input.value});
 						//mise à jour de l'élément li
 						li.innerText = input.value;
-						input.parentNode.replaceChild(li,input);
+						input.parentNode.replaceChild(li, input);
 					}
-				}
+				})
 				//replace élément par l'input
-				li.parentNode.replaceChild(input,li);
-			}
+				li.parentNode.replaceChild(input, li);
+			},
 		},
 		computed:{
 			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos"]),
