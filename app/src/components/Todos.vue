@@ -20,7 +20,8 @@
 
 		<button v-on:click.prevent="filter = 'done' ">tache complétées</button>
 		<button v-on:click.prevent="filter = 'todo' ">tache en cours</button>
-		<button v-on:click.prevent="filter = 'all' ">toute tacher</button>
+		<button v-on:click.prevent="filter = 'all' ">toutes taches</button>
+		il reste {{remaining}} tâches à faire
 	</div>
 </template>
 
@@ -45,5 +46,6 @@
 				return this.filteredTodos(this.filter);
 			}
 		}
+
 	});
 </script>
