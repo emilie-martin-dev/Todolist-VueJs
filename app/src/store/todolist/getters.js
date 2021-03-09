@@ -1,25 +1,27 @@
 export function remaining(state){
-	return state.todolist[1].todos.filter((todo) => !todo.completed).length
+	return function(listIndex) {
+		return state.todolist[listIndex].todos.filter((todo) => !todo.completed).length
+	}
 }
 
 export function hasTodos(state){
-	return state.todolist[1].todos.length > 0
+	return function(listIndex) {
+		return state.todolist[listIndex].todos.length > 0
+	}
 }
 
 export function filteredTodos(state){
-	return function(filterTodo, filterList) {
-		if(filterTodo === 'todo'){
-			return state.todolist[filterList].todos.filter(todo => !todo.completed)
-		} else if (filterTodo === 'done'){
-			return state.todolist[filterList].todos.filter(todo => todo.completed)
+	return function(listIndex, filter) {
+		if(filter === 'todo'){
+			return state.todolist[listIndex].todos.filter(todo => !todo.completed)
+		} else if (filter === 'done'){
+			return state.todolist[listIndex].todos.filter(todo => todo.completed)
 		}
 
-		return state.todolist[filterList].todos
+		return state.todolist[listIndex].todos
 	}
 }
 
-export function listTodos(state){
-	return function() {
-		return state.todolist
-	}
+export function todolist(state){
+	return state.todolist;
 }
