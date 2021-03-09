@@ -1,22 +1,22 @@
-export function decrease(state, index){
+export function deleteTodo(state, {listIndex, todo}){
 	//mise à jour des id suivant la valeur à supprimer
-	for(let i = index.id; i < state.todolist[0].todos.length; i++){
-		state.todolist[0].todos[i].id -= 1;
+	for(let i = todo.id; i < state.todolist[listIndex].todos.length; i++){
+		state.todolist[listIndex].todos[i].id -= 1;
 	}
 	//suppression
-	state.todolist[0].todos.splice(state.todolist[0].todos.indexOf(index), 1);
+	state.todolist[listIndex].todos.splice(state.todolist[listIndex].todos.indexOf(todo), 1);
 }
 
-export function ajouter(state, {name, completed}){
-	state.todolist[0].todos.push(
+export function ajouter(state, {listIndex, name, completed}){
+	state.todolist[listIndex].todos.push(
 		{
-			id: (state.todolist[0].todos.length+1),
+			id: (state.todolist[listIndex].todos.length+1),
 			name: name,
 			completed: completed
 		}
 	);
 }
 
-export function update(state, {todo, value}){
-	state.todolist[0].todos[state.todolist[0].todos.indexOf(todo)].name = value;
+export function update(state, {listIndex, todo, value}){
+	state.todolist[listIndex].todos[state.todolist[listIndex].todos.indexOf(todo)].name = value;
 }

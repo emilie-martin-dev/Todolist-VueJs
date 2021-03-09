@@ -1,26 +1,31 @@
 <template>
 	<div>
+		<li v-for="list in todolist" :key="list.id">
+			<button v-on:click.prevent="selectedList = list.id">Liste n°{{list.id+1}}: {{list.name}}</button>
+		</li>
+	</div>
+
+	<div>
 		<h1>TodoList</h1>
 		<ul>
 			<li v-for="todo in filteredTodosArg" :key="todo.name">
 				<input type="checkbox" :id="'checkbox-' + todo.id" v-model=todo.completed>
 				<label :for="'checkbox-' + todo.id">{{todo.id}} | </label>
-				<label v-on:click="transform(todo)" v-bind:id="todo.id"> {{todo.name}} </label>
-				<button v-on:click="decrease(todo)" >Supprimer la todo</button>
-
+				<label v-on:click="transform(selectedList, todo)" v-bind:id="todo.id"> {{todo.name}} </label>
+				<button v-on:click="deleteTodo({listIndex: selectedList, todo: todo})">Supprimer la todo</button>
 			</li>
 		</ul>
 
-		<input type="texte" id="addTodoName" v-model='addTodoName' placeholder="Nom de la tache">
+		<input type="texte" id="addTodoName" v-model="addTodoName" placeholder="Nom de la tache">
 		<label> Tache completer: </label>
 		<input type="checkbox" id="addTodoCompleted" v-model="addTodoCompleted">
 
-		<button v-on:click="ajouter({name: addTodoName, completed: addTodoCompleted})">Ajouter une todo</button>
+		<button v-on:click="ajouter({listIndex: selectedList, name: addTodoName, completed: addTodoCompleted})">Ajouter une todo</button>
 
 		<button v-on:click.prevent="filter = 'done' ">tache complétées</button>
 		<button v-on:click.prevent="filter = 'todo' ">tache en cours</button>
 		<button v-on:click.prevent="filter = 'all' ">toutes taches</button>
-		<span>Il reste {{remaining}} tâches à faire</span>
+		<span>Il reste {{remainingCurrentList}} tâches à faire</span>
 	</div>
 </template>
 
@@ -28,18 +33,20 @@
 	import {mapMutations, mapGetters} from "vuex";
 	import {defineComponent} from 'vue';
 	import {store} from '../store/store';
+
 	export default defineComponent({
 		data () {
 			return {
 				addTodoCompleted: false,
 				addTodoName:'',
-				filter: 'all'
+				filter: 'all',
+				selectedList: 0
 			}
 		},
 		methods: {
-			...mapMutations("todolist", ["decrease", "ajouter","update"]),
+			...mapMutations("todolist", ["deleteTodo", "ajouter","update"]),
 
-			transform(todo){
+			transform(listIndex, todo){
 				let li = document.getElementById(todo.id);
 				//création d'un input de type texte
 				let input = document.createElement('input');
@@ -49,7 +56,7 @@
 				input.addEventListener('keydown', function submit(e){
 					if(e.code == "Enter"){
 						//mise à jour su store
-						store.commit('todolist/update',{todo: todo, value: input.value});
+						store.commit('todolist/update', {listIndex: listIndex, todo: todo, value: input.value});
 						//mise à jour de l'élément li
 						li.innerText = input.value;
 						input.parentNode.replaceChild(li, input);
@@ -57,12 +64,17 @@
 				})
 				//replace élément par l'input
 				li.parentNode.replaceChild(input, li);
-			},
+			}
 		},
 		computed:{
-			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos"]),
+			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos", "todolist"]),
+			
 			filteredTodosArg() {
-				return this.filteredTodos(this.filter);
+				return this.filteredTodos(this.selectedList, this.filter);
+			},
+
+			remainingCurrentList() {
+				return this.remaining(this.selectedList);
 			}
 		}
 
