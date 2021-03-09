@@ -7,12 +7,12 @@ export function deleteTodo(state, {listIndex, todo}){
 	state.todolist[listIndex].todos.splice(state.todolist[listIndex].todos.indexOf(todo), 1);
 }
 
-export function ajouter(state, {listIndex, name, completed}){
+export function ajouter(state, {listIndex, name}){
 	state.todolist[listIndex].todos.push(
 		{
 			id: (state.todolist[listIndex].todos.length+1),
 			name: name,
-			completed: completed
+			completed: false
 		}
 	);
 }
