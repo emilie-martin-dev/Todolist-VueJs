@@ -19,7 +19,7 @@ export function filteredTodos(state){
 }
 
 export function listTodos(state){
-    return function() {
+	return function() {
 		return state.todolist
 	}
 }

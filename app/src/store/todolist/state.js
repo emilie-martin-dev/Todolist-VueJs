@@ -3,7 +3,7 @@ export default function () {
 		todolist: [
 			{
 				id: 0,
-                name: 'tp3',
+				name: 'tp3',
 				todos: [
 					{
 						id: 1,
@@ -47,9 +47,9 @@ export default function () {
 					}
 				]
 			},
-            {
+			{
 				id: 1,
-                name: 'creer une liste de todo',
+				name: 'creer une liste de todo',
 				todos: [
 					{
 						id: 1,

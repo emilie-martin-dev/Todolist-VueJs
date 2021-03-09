@@ -1,23 +1,23 @@
 <template>
-    <div>
-        <li v-for="todolist in forListTodos" :key="todolist.id">
-        <button v-on:click.prevent="filterList = todolist.id">Liste n°{{todolist.id+1}}: {{todolist.name}}</button>
+	<div>
+		<li v-for="todolist in forListTodos" :key="todolist.id">
+		<button v-on:click.prevent="filterList = todolist.id">Liste n°{{todolist.id+1}}: {{todolist.name}}</button>
 
-        </li>
-    </div>
+		</li>
+	</div>
 
 	<div>
 		<h1> TodoList</h1>
 		<ul>
 
-                <li v-for="todo in filteredTodosArg" :key="todo.name">
-                    <input type="checkbox" :id="'checkbox-' + todo.id" v-model=todo.completed>
-                    <label :for="'checkbox-' + todo.id">{{todo.id}} | Nom de la tache: {{todo.name}} - Completer:{{ (todo.completed == false ? 'non' : 'oui')}} </label>
+				<li v-for="todo in filteredTodosArg" :key="todo.name">
+					<input type="checkbox" :id="'checkbox-' + todo.id" v-model=todo.completed>
+					<label :for="'checkbox-' + todo.id">{{todo.id}} | Nom de la tache: {{todo.name}} - Completer:{{ (todo.completed == false ? 'non' : 'oui')}} </label>
 
-                    <button v-on:click="decrease({list: filterList, index : todo})" >Supprimer la todo</button>
-                    <button v-on:click="update({list: filterList, index : todo})" >Modifier la todo</button>
-                    <input type="texte" placeholder="Nom de la tache">
-                </li>
+					<button v-on:click="decrease({list: filterList, index : todo})" >Supprimer la todo</button>
+					<button v-on:click="update({list: filterList, index : todo})" >Modifier la todo</button>
+					<input type="texte" placeholder="Nom de la tache">
+				</li>
 
 		</ul>
 
@@ -43,7 +43,7 @@
 				addTodoCompleted: false,
 				addTodoName:'',
 				filterTodo: 'all',
-                filterList: 0
+				filterList: 0
 			}
 		},
 		methods: {
@@ -54,7 +54,7 @@
 			filteredTodosArg() {
 				return this.filteredTodos(this.filterTodo, this.filterList);
 			},
-            forListTodos() {
+			forListTodos() {
 				return this.listTodos();
 			}
 		}
