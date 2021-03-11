@@ -3,12 +3,15 @@
 		<div class="col s12 l4">
 			<h1>&nbsp;</h1>
 			<div class="collection">
-				<a v-for="list in todolist" :key="list.id" href="#" v-on:click.prevent="selectedList = list.id" v-bind:class="[selectedList == list.id ? 'active': '']" class="collection-item"><span class="badge">Nombre de todos</span>{{list.name}}</a>
+				<a v-for="list in todolist" :key="list.id" href="#" v-on:click.prevent="selectedList = list.id" v-bind:class="[selectedList == list.id ? 'active': '']" class="collection-item">
+					<span class="badge">Nombre de todos</span>{{list.name}}
+				</a>
 			</div>
 		</div>
 
 		<div class="col s12 l8">
-			<h1>{{todolist[selectedList].name}}</h1>
+			<h1 v-show="showText" v-on:click="transformTodo(todolist[selectedList].id)">{{todolist[selectedList].name}}</h1>
+			<h1 v-show="showInput" v-on:keyup.enter="transformTodo(todolist[selectedList].id)"> <input type='text' :value="todolist[selectedList].name" id="newTodoName"/> </h1>
 
 			<div class="row" v-for="todo in filteredTodosArg" :key="todo.name">
 				<label class="col s1"><input type="checkbox" :id="'checkbox-' + todo.id" v-model=todo.completed><span></span></label>
@@ -43,12 +46,24 @@
 			return {
 				newTodoName: '',
 				filter: 'all',
-				selectedList: 0
+				selectedList: 0,
+				showText: true,
+				showInput: false,
 			}
 		},
 
 		methods: {
-			...mapMutations("todolist", ["deleteTodo", "ajouter","update"]),
+			...mapMutations("todolist", ["deleteTodo", "ajouter", "update", "updateTodo"]),
+
+			transformTodo(listIndex){
+				this.showText = !this.showText;
+				this.showInput = !this.showInput;
+
+				if(this.showInput == false){
+					let input = document.getElementById("newTodoName");
+					store.commit('todolist/updateTodo', {listIndex: listIndex, value: input.value});
+				}
+			},
 
 			transform(listIndex, todo){
 				let li = document.getElementById(todo.id);
@@ -73,7 +88,7 @@
 
 		computed:{
 			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos", "todolist"]),
-			
+
 			filteredTodosArg() {
 				return this.filteredTodos(this.selectedList, this.filter);
 			},
