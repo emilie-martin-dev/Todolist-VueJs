@@ -26,13 +26,3 @@ export function filteredTodos(state){
 export function todolist(state){
 	return state.todolist;
 }
-
-export function countlist(state){
-	return function() {
-		var count = 0
-		for(var listIndex = 0; listIndex < state.todolist.length; listIndex++){
-			count += this.remaining(listIndex)
-		}
-		return count
-	}
-}

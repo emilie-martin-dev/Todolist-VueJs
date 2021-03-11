@@ -4,10 +4,9 @@
 			<h1>&nbsp;</h1>
 			<div class="collection">
 				<a v-for="list in todolist" :key="list.id" href="#" v-on:click.prevent="selectedList = list.id" v-bind:class="[selectedList == list.id ? 'active': '']" class="collection-item">
-					<span class="badge">Nombre de todos</span>{{list.name}}
+					<span class="badge" v-bind="listCount = list.id"> Nombre de todos {{countTodoFalseList}} </span> {{list.name}}
 				</a>
 			</div>
-				<span>Il reste {{countTodoFalseList}} tâches en tout à faire</span>
 		</div>
 
 		<div class="col s12 l8">
@@ -47,7 +46,7 @@
 				newTodoName: '',
 				filter: 'all',
 				selectedList: 0,
-				list : 0
+				listCount: 0
 			}
 		},
 
@@ -76,7 +75,7 @@
 		},
 
 		computed:{
-			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos", "todolist", "countlist"]),
+			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos", "todolist"]),
 
 			filteredTodosArg() {
 				return this.filteredTodos(this.selectedList, this.filter);
@@ -87,7 +86,7 @@
 			},
 
 			countTodoFalseList() {
-				return this.countlist();
+				return this.remaining(this.listCount);
 			}
 		}
 
