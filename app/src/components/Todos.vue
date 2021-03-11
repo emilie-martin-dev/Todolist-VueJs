@@ -73,7 +73,7 @@
 
 		computed:{
 			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos", "todolist"]),
-			
+
 			filteredTodosArg() {
 				return this.filteredTodos(this.selectedList, this.filter);
 			},
