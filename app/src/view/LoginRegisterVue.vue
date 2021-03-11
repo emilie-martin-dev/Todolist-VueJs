@@ -1,8 +1,15 @@
 <template>
-	<div class="container row">
-		<div class="col s12 m6 offset-l3">
+	<div class="container row valign-wrapper" id="loginRegisterMainDiv">
+		<div class="col s12 m6 offset-l3 card-panel" id="loginRegisterPanel">
 			<login v-show="isLoginUi"></login>
 			<register v-show="!isLoginUi"></register>
+
+			
+			<div class="row">
+				<div class="col s12">
+					<p class="center-align"><a href="#" v-on:click.prevent="changeUi">Vous n'avez pas de compte? Inscrivez-vous!</a></p>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -20,11 +27,9 @@
 		},
 
 		methods: {
-			
-		},
-
-		computed:{
-			
+			changeUi() {
+				this.isLoginUi = !this.isLoginUi;
+			}
 		},
 
 		components: {
@@ -36,5 +41,12 @@
 </script>
 
 <style>
+	#loginRegisterMainDiv {
+		height: 100%;
+	}
 
+	#loginRegisterPanel{
+		padding: 35px;
+		padding-bottom: 0px;
+	}
 </style>
