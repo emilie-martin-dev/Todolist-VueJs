@@ -4,10 +4,10 @@
 			<login v-show="isLoginUi"></login>
 			<register v-show="!isLoginUi"></register>
 
-			
-			<div class="row">
+
+			<div class="row" v-show="isLoginUi">
 				<div class="col s12">
-					<p class="center-align"><a href="#" v-on:click.prevent="changeUi">Vous n'avez pas de compte? Inscrivez-vous!</a></p>
+					<p class="center-align"><a href="#" v-on:click.prevent="changeUi()">Vous n'avez pas de compte? Inscrivez-vous!</a></p>
 				</div>
 			</div>
 		</div>
