@@ -11,11 +11,14 @@
 
 		<div class="col s12 l8">
 			<h1 v-show="showText" v-on:click="transformTodo(todolist[selectedList].id)">{{todolist[selectedList].name}}</h1>
-			<h1 v-show="showInput" v-on:keyup.enter="transformTodo(todolist[selectedList].id)"> <input type='text' :value="todolist[selectedList].name" id="newTodoName"/> </h1>
+			<h1 v-show="showInput" v-on:keyup.enter="transformTodo(todolist[selectedList].id)"> <input type='text' :value="todolist[selectedList].name" id="newTodoListName"/> </h1>
 
 			<div class="row" v-for="todo in filteredTodosArg" :key="todo.name">
 				<label class="col s1"><input type="checkbox" :id="'checkbox-' + todo.id" v-model=todo.completed><span></span></label>
-				<div class="col s10"><span v-on:click="transform(selectedList, todo)" v-bind:id="todo.id">{{todo.name}}</span></div>
+				<div class="col s10" :bool='true'>
+					<span v-show='number!=todo.id' v-on:click="transform(selectedList, todo)">{{todo.name}}</span>
+					<input v-show='number==todo.id' v-on:keyup.enter="transform(selectedList, todo)"  type='text' :value="todo.name" v-bind:id="todo.id"/>
+				</div>
 				<a class="col s1 btn-flat"><i v-on:click="deleteTodo({listIndex: selectedList, todo: todo})" class="material-icons">delete</i></a>
 			</div>
 
@@ -49,6 +52,8 @@
 				selectedList: 0,
 				showText: true,
 				showInput: false,
+				showTodo: true,
+				number: -1
 			}
 		},
 
@@ -60,30 +65,25 @@
 				this.showInput = !this.showInput;
 
 				if(this.showInput == false){
-					let input = document.getElementById("newTodoName");
+					let input = document.getElementById("newTodoListName");
 					store.commit('todolist/updateTodo', {listIndex: listIndex, value: input.value});
 				}
 			},
 
 			transform(listIndex, todo){
-				let li = document.getElementById(todo.id);
-				//création d'un input de type texte
-				let input = document.createElement('input');
-				input.setAttribute('type', 'text');
-				input.setAttribute('value', li.innerText);
-				//affectation d'une fonction à l'input
-				input.addEventListener('keydown', function submit(e){
-					if(e.code == "Enter"){
-						//mise à jour su store
-						store.commit('todolist/update', {listIndex: listIndex, todo: todo, value: input.value});
-						//mise à jour de l'élément li
-						li.innerText = input.value;
-						input.parentNode.replaceChild(li, input);
-					}
-				})
-				//replace élément par l'input
-				li.parentNode.replaceChild(input, li);
+				if(this.number == todo.id){
+					this.number  = -1;
+					let input = document.getElementById(todo.id);
+					store.commit('todolist/update', {listIndex: listIndex, todo: todo, value: input.value});
+
+				}
+				else{
+					this.number = todo.id;
+				}
 			}
+		},
+		props: {
+			propsBool:{type: Object},
 		},
 
 		computed:{
