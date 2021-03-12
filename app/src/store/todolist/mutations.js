@@ -8,7 +8,15 @@ export function deleteTodo(state, {listIndex, todo}){
 }
 
 export function deleteListTodo(state, {list}){
-	state.todolist.splice(state.todolist.indexOf(list), 1);
+	if(state.todolist.length == 1){
+		alert("Vous devez recréer une liste avant de pouvoir supprimer celle ci");
+	}else{
+		state.todolist.splice(state.todolist.indexOf(list), 1);
+	
+		for(let i = 0; i < state.todolist.length; i++){
+			state.todolist[i].id = i;
+		}
+	}
 }
 
 export function ajouter(state, {listIndex, name}){
@@ -24,7 +32,7 @@ export function ajouter(state, {listIndex, name}){
 export function addListTodo(state, {name}){
 	state.todolist.push(
 		{
-			id:(state.todolist.length+1),
+			id:(state.todolist.length),
 			name: name,
 			todos: []
 		}
