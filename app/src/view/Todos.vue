@@ -2,11 +2,11 @@
 	<div class="container row">
 
 		<div class="col s12 l4">
-			<listTodo> </listTodo>
+			<listTodo @newSelectedList="upSelectedList"/>
 		</div>
 
 		<div class="col s12 l8">
-			<todo> </todo>
+			<todo :idLi="idList"/>
 		</div>
 	</div>
 </template>
@@ -18,11 +18,20 @@
 	import Todo from '../components/Todo/Todo.vue';
 
 	export default defineComponent({
-		
+		name: "todos",
+		emits: ["newSelectedList"],
 		components: {
 			listTodo : ListTodo,
 			todo : Todo
+		},data: function() {
+			return {
+				idList: 0,
+			};
 		},
-
+		methods: {
+			upSelectedList(selectedList) {
+				this.idList = selectedList;
+			}
+		}
 	});
 </script>

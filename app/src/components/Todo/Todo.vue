@@ -1,6 +1,7 @@
 <template>
-	<h1>{{todolist[selectedList].name}}</h1>
 
+	<h1 v-show="showText" v-on:click="transformTodo(todolist[selectedList].id)">{{todolist[selectedList].name}}</h1>
+	<h1 v-show="showInput" v-on:keyup.enter="transformTodo(todolist[selectedList].id)"> <input type='text' :value="todolist[selectedList].name" id="newTodoName"/> </h1>
 	<div class="row" v-for="todo in filteredTodosArg" :key="todo.name">
 		<label class="col s1"><input type="checkbox" :id="'checkbox-' + todo.id" v-model=todo.completed><span></span></label>
 		<div class="col s10" :bool='true'>
@@ -33,18 +34,27 @@
 
 	export default defineComponent({
 		name: "todo",
-
 		data () {
 			return {
 				newTodoName: '',
 				filter: 'all',
 				selectedList: 0,
 				number: -1,
+				showText: true,
+				showInput: false,
 			}
 		},
-
 		methods: {
 			...mapMutations("todolist", ["deleteTodo", "ajouter","update"]),
+
+			transformTodo(listIndex){
+				this.showText = !this.showText;
+				this.showInput = !this.showInput;
+				if(this.showInput == false){
+					let input = document.getElementById("newTodoName");
+					store.commit('todolist/updateTodo', {listIndex: listIndex, value: input.value});
+				}
+			},
 
 			transform(listIndex, todo){
 				if(this.number == todo.id){
@@ -52,9 +62,15 @@
 					let input = document.getElementById(todo.id);
 					store.commit('todolist/update', {listIndex: listIndex, todo: todo, value: input.value});
 				}
+
 				else{
 					this.number = todo.id;
 				}
+			}
+		},
+		props: {
+			idLi: {
+				type: Number,
 			}
 		},
 		computed:{
@@ -66,9 +82,14 @@
 			},
 
 			remainingCurrentList() {
+
 				return this.remaining(this.selectedList);
 			}
+		},
+		watch: {
+			idLi: function() {
+				this.selectedList = this.idLi;
+			}
 		}
-
 	});
 </script>
