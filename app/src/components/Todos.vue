@@ -7,6 +7,12 @@
 					<span class="badge">Nombre de todos</span>{{list.name}}
 				</a>
 			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input placeholder="Ajouter une liste" id="newListName" type="text" v-model="newListName"/>
+				</div>
+				<a class="col 3 waves-effect waves-light btn" v-on:click="addListTodo({name: newListName}); newListName=''"><i class="material-icons left">add</i>Ajouter</a>
+			</div>
 		</div>
 
 		<div class="col s12 l8">
@@ -47,13 +53,14 @@
 		data () {
 			return {
 				newTodoName: '',
+				newListName: '',
 				filter: 'all',
 				selectedList: 0
 			}
 		},
 
 		methods: {
-			...mapMutations("todolist", ["deleteTodo", "ajouter","update"]),
+			...mapMutations("todolist", ["deleteTodo", "ajouter", "addListTodo", "update"]),
 			
 			deleteListTodo(list){
 				if(store.getters.["todolist/todolist"].length-1 == this.selectedList){

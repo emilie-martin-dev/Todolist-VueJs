@@ -8,9 +8,6 @@ export function deleteTodo(state, {listIndex, todo}){
 }
 
 export function deleteListTodo(state, {list}){
-	/*for(let i = list; i < state.todolist.length; i++){
-		state.todolist[i] -= 1;
-	}*/
 	state.todolist.splice(state.todolist.indexOf(list), 1);
 }
 
@@ -20,6 +17,16 @@ export function ajouter(state, {listIndex, name}){
 			id: (state.todolist[listIndex].todos.length+1),
 			name: name,
 			completed: false
+		}
+	);
+}
+
+export function addListTodo(state, {name}){
+	state.todolist.push(
+		{
+			id:(state.todolist.length+1),
+			name: name,
+			todos: []
 		}
 	);
 }
