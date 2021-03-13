@@ -8,14 +8,8 @@ export function deleteTodo(state, {listIndex, todo}){
 }
 
 export function deleteListTodo(state, {list}){
-	if(state.todolist.length == 1){
-		alert("Vous devez recréer une liste avant de pouvoir supprimer celle ci");
-	}else{
+	if(state.todolist.includes(list)){
 		state.todolist.splice(state.todolist.indexOf(list), 1);
-	
-		for(let i = 0; i < state.todolist.length; i++){
-			state.todolist[i].id = i;
-		}
 	}
 }
 

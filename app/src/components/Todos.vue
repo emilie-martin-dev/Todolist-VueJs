@@ -60,14 +60,14 @@
 		},
 
 		methods: {
-			...mapMutations("todolist", ["deleteTodo", "deleteListTodo", "ajouter", "addListTodo", "update"]),
+			...mapMutations("todolist", ["deleteTodo", "ajouter", "addListTodo", "update"]),
 			
-			/*deleteListTodo(list){
+			deleteListTodo({list}){
 				if(store.getters.["todolist/todolist"].length-1 == this.selectedList){
 					this.selectedList--;
 				}
-				store.commit("todolist/deleteListTodo", {list :list});//supprime le dernier element
-			},*/
+				store.commit("todolist/deleteListTodo", {list :list});
+			},
 			
 			transform(listIndex, todo){
 				let li = document.getElementById(todo.id);
