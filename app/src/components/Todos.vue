@@ -3,8 +3,8 @@
 		<div class="col s12 l4">
 			<h1>&nbsp;</h1>
 			<div class="collection">
-				<a v-for="list in todolist" :key="list.id" href="#" v-on:click.prevent="selectedList = list.id" v-bind:class="[selectedList == list.id ? 'active': '']" class="collection-item">
-					<span class="badge" v-bind="listCount = list.id"> Nombre de todos {{countTodoFalseList}} </span> {{list.name}}
+				<a v-for="(list, index) in todolist" :key="list.id" href="#" v-on:click.prevent="selectedList = list.id" v-bind:class="[selectedList == list.id ? 'active': '']" class="collection-item">
+					<span class="badge">{{remainingList[index]}} restant(s)</span> {{list.name}}
 				</a>
 			</div>
 		</div>
@@ -45,8 +45,7 @@
 			return {
 				newTodoName: '',
 				filter: 'all',
-				selectedList: 0,
-				listCount: 0
+				selectedList: 0
 			}
 		},
 
@@ -75,7 +74,7 @@
 		},
 
 		computed:{
-			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos", "todolist"]),
+			...mapGetters("todolist", ["remaining", "remainingList", "hasTodos", "filteredTodos", "todolist"]),
 
 			filteredTodosArg() {
 				return this.filteredTodos(this.selectedList, this.filter);
@@ -83,10 +82,6 @@
 
 			remainingCurrentList() {
 				return this.remaining(this.selectedList);
-			},
-
-			countTodoFalseList() {
-				return this.remaining(this.listCount);
 			}
 		}
 
