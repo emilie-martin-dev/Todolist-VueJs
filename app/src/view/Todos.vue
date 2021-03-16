@@ -2,11 +2,11 @@
 	<div class="container row">
 
 		<div class="col s12 l4">
-			<listTodo @newSelectedList="upSelectedList"/>
+			<listTodo @newSelectedList="newListSelected"/>
 		</div>
 
 		<div class="col s12 l8">
-			<todo :idLi="idList"/>
+			<todo :idListTodo="idList"/>
 		</div>
 	</div>
 </template>
@@ -19,17 +19,20 @@
 
 	export default defineComponent({
 		name: "todos",
-		emits: ["newSelectedList"],
+
 		components: {
 			listTodo : ListTodo,
 			todo : Todo
-		},data: function() {
+		},
+		
+		data() {
 			return {
 				idList: 0,
 			};
 		},
+
 		methods: {
-			upSelectedList(selectedList) {
+			newListSelected(selectedList) {
 				this.idList = selectedList;
 			}
 		}

@@ -12,6 +12,7 @@
 	export default defineComponent({
 		name: "listTodo",
 		emits: ["newSelectedList"],
+
 		data () {
 			return {
 				selectedList: 0,
@@ -19,20 +20,13 @@
 		},
 
 		methods:{
-			updateSelectedlist: function(){
+			updateSelectedlist(){
 				this.$emit("newSelectedList", this.selectedList);
 			}
 		},
 
 		computed:{
-			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos", "todolist"]),
-
-			filteredTodosArg() {
-				return this.filteredTodos(this.selectedList, this.filter);
-			},
-			remainingCurrentList() {
-				return this.remaining(this.selectedList);
-			}
+			...mapGetters("todolist", ["todolist"]),
 		}
 
 	});

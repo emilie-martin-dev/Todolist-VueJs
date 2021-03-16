@@ -1,10 +1,10 @@
 <template>
+	<h1 v-show="!showInput" v-on:click="transformTodo(todolist[selectedList].id)">{{todolist[selectedList].name}}</h1>
+	<h1 v-show="showInput"><input type='text' :value="todolist[selectedList].name" v-on:keyup.enter="transformTodo(todolist[selectedList].id)" id="todoListName"/> </h1>
 
-	<h1 v-show="showText" v-on:click="transformTodo(todolist[selectedList].id)">{{todolist[selectedList].name}}</h1>
-	<h1 v-show="showInput" v-on:keyup.enter="transformTodo(todolist[selectedList].id)"> <input type='text' :value="todolist[selectedList].name" id="newTodoName"/> </h1>
 	<div class="row" v-for="todo in filteredTodosArg" :key="todo.name">
 		<label class="col s1"><input type="checkbox" :id="'checkbox-' + todo.id" v-model=todo.completed><span></span></label>
-		<div class="col s10" :bool='true'>
+		<div class="col s10">
 			<span v-show='number!=todo.id' v-on:click="transform(selectedList, todo)">{{todo.name}}</span>
 			<input v-show='number==todo.id' v-on:keyup.enter="transform(selectedList, todo)"  type='text' :value="todo.name" v-bind:id="todo.id"/>
 		</div>
@@ -24,7 +24,6 @@
 		<a class="btn-flat" v-on:click.prevent="filter = 'done'" v-bind:class="[filter == 'done' ? 'disabled': '']">Faites</a>
 		<span>Il reste {{remainingCurrentList}} tâches à faire</span>
 	</div>
-
 </template>
 
 <script>
@@ -34,45 +33,47 @@
 
 	export default defineComponent({
 		name: "todo",
+
 		data () {
 			return {
 				newTodoName: '',
 				filter: 'all',
 				selectedList: 0,
 				number: -1,
-				showText: true,
-				showInput: false,
+				showInput: false
 			}
 		},
+
 		methods: {
 			...mapMutations("todolist", ["deleteTodo", "ajouter","update"]),
 
 			transformTodo(listIndex){
-				this.showText = !this.showText;
 				this.showInput = !this.showInput;
+
 				if(this.showInput == false){
-					let input = document.getElementById("newTodoName");
-					store.commit('todolist/updateTodo', {listIndex: listIndex, value: input.value});
+					let input = document.getElementById("todoListName");
+
+					store.commit('todolist/updateTodoListName', {listIndex: listIndex, value: input.value});
 				}
 			},
 
 			transform(listIndex, todo){
 				if(this.number == todo.id){
-					this.number  = -1;
+					this.number = -1;
 					let input = document.getElementById(todo.id);
 					store.commit('todolist/update', {listIndex: listIndex, todo: todo, value: input.value});
-				}
-
-				else{
+				} else {
 					this.number = todo.id;
 				}
 			}
 		},
+
 		props: {
-			idLi: {
+			idListTodo: {
 				type: Number,
 			}
 		},
+
 		computed:{
 			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos", "todolist"]),
 
@@ -86,9 +87,10 @@
 				return this.remaining(this.selectedList);
 			}
 		},
+
 		watch: {
-			idLi: function() {
-				this.selectedList = this.idLi;
+			idListTodo() {
+				this.selectedList = this.idListTodo;
 			}
 		}
 	});
