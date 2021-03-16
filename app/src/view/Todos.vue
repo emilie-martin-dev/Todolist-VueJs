@@ -14,8 +14,8 @@
 <script>
 
 	import {defineComponent} from 'vue';
-	import ListTodo from '../components/Todo/ListTodo.vue';
-	import Todo from '../components/Todo/Todo.vue';
+	import ListTodo from '../components/todo/ListTodo.vue';
+	import Todo from '../components/todo/Todo.vue';
 
 	export default defineComponent({
 		name: "todos",
