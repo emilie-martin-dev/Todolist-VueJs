@@ -10,6 +10,12 @@
 					<p class="center-align"><a href="#" v-on:click.prevent="changeUi()">Vous n'avez pas de compte? Inscrivez-vous!</a></p>
 				</div>
 			</div>
+
+			<div class="row" v-show="!isLoginUi">
+				<div class="col s12">
+					<p class="center-align"><a href="#" v-on:click.prevent="changeUi()">Vous avez déjà compte? Connectez-vous!</a></p>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>

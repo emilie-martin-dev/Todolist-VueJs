@@ -1,6 +1,5 @@
 <template>
 	<div class="row">
-	<p>Register</p>
 		<form class="col s12">
 			<div class="row">
 				<div class="input-field col s12">
@@ -18,12 +17,12 @@
 
 			<div class="row">
 				<div class="input-field col s12">
-					<input placeholder="Veuillez confirmer votre mot de passe" id="copypassword" type="password" v-model="copypassword">
-					<label for="copypassword">Veuillez confirmer votre mot de passe</label>
+					<input placeholder="Veuillez confirmer votre mot de passe" id="passwordConfirm" type="password" v-model="passwordConfirm">
+					<label for="passwordConfirm">Veuillez confirmer votre mot de passe</label>
 				</div>
 			</div>
 
-			<div class="row" v-show="!mdpOk">
+			<div class="row" v-show="!passwordMatch">
 				<p> Ces mots de passe ne correspondent pas. Veuillez réessayer. </p>
 			</div>
 
@@ -32,8 +31,6 @@
 					<a class="waves-effect waves-light btn" v-on:click="valider()">Valider</a>
 				</div>
 			</div>
-
-
 		</form>
 	</div>
 </template>
@@ -48,15 +45,15 @@
 			return {
 				username:"",
 				password:"",
-				copypassword:"",
-				mdpOk :true
+				passwordConfirm:"",
+				passwordMatch :true
 			}
 		},
 
 		methods: {
 
 			valider(){
-				this.mdpOk = this.password == this.copypassword ? true : false
+				this.passwordMatch = this.password == this.passwordConfirm
 			}
 
 		},
