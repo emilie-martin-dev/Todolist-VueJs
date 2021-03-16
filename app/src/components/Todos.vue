@@ -3,14 +3,23 @@
 		<div class="col s12 l4">
 			<h1>&nbsp;</h1>
 			<div class="collection">
-				<a v-for="(list, index) in todolist" :key="list.id" href="#" v-on:click.prevent="selectedList = list.id" v-bind:class="[selectedList == list.id ? 'active': '']" class="collection-item">
+				<a v-for="(list, index) in todolist" :key="list.id" href="#" v-on:click.prevent="selectedList = index" v-bind:class="[selectedList == index ? 'active': '']" class="collection-item">
 					<span class="badge">{{remainingList[index]}} restant(s)</span> {{list.name}}
 				</a>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input placeholder="Ajouter une liste" id="newListName" type="text" v-model="newListName"/>
+				</div>
+				<a class="col 3 waves-effect waves-light btn" v-on:click="addListTodo({name: newListName}); newListName=''"><i class="material-icons left">add</i>Ajouter</a>
 			</div>
 		</div>
 
 		<div class="col s12 l8">
-			<h1>{{todolist[selectedList].name}}</h1>
+			<h1>
+				{{todolist[selectedList].name}}
+				<a class=" btn-flat"><i v-on:click="deleteListTodo({list: todolist[selectedList]})" class="material-icons">delete</i></a>
+			</h1>
 
 			<div class="row" v-for="todo in filteredTodosArg" :key="todo.name">
 				<label class="col s1"><input type="checkbox" :id="'checkbox-' + todo.id" v-model=todo.completed><span></span></label>
@@ -44,14 +53,22 @@
 		data () {
 			return {
 				newTodoName: '',
+				newListName: '',
 				filter: 'all',
 				selectedList: 0
 			}
 		},
 
 		methods: {
-			...mapMutations("todolist", ["deleteTodo", "ajouter","update"]),
-
+			...mapMutations("todolist", ["deleteTodo", "deleteListTodo", "ajouter", "addListTodo", "update"]),
+			
+			/*deleteListTodo(list){
+				if(store.getters.["todolist/todolist"].length-1 == this.selectedList){
+					this.selectedList--;
+				}
+				store.commit("todolist/deleteListTodo", {list :list});//supprime le dernier element
+			},*/
+			
 			transform(listIndex, todo){
 				let li = document.getElementById(todo.id);
 				//création d'un input de type texte
