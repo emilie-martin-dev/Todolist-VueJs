@@ -33,6 +33,11 @@ export function addListTodo(state, {name}){
 	);
 }
 
+export function updateTodoListName(state, {listIndex, value}){
+	state.todolist[listIndex].name = value;
+	
+}
+
 export function update(state, {listIndex, todo, value}){
 	state.todolist[listIndex].todos[state.todolist[listIndex].todos.indexOf(todo)].name = value;
 }
