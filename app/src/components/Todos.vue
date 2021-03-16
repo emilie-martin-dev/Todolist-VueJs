@@ -3,7 +3,9 @@
 		<div class="col s12 l4">
 			<h1>&nbsp;</h1>
 			<div class="collection">
-				<a v-for="list in todolist" :key="list.id" href="#" v-on:click.prevent="selectedList = list.id" v-bind:class="[selectedList == list.id ? 'active': '']" class="collection-item"><span class="badge">Nombre de todos</span>{{list.name}}</a>
+				<a v-for="(list, index) in todolist" :key="list.id" href="#" v-on:click.prevent="selectedList = list.id" v-bind:class="[selectedList == list.id ? 'active': '']" class="collection-item">
+					<span class="badge">{{remainingList[index]}} restant(s)</span> {{list.name}}
+				</a>
 			</div>
 		</div>
 
@@ -72,8 +74,8 @@
 		},
 
 		computed:{
-			...mapGetters("todolist", ["remaining", "hasTodos", "filteredTodos", "todolist"]),
-			
+			...mapGetters("todolist", ["remaining", "remainingList", "hasTodos", "filteredTodos", "todolist"]),
+
 			filteredTodosArg() {
 				return this.filteredTodos(this.selectedList, this.filter);
 			},
