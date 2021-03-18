@@ -16,6 +16,19 @@ export function login(store, {login, password}) {
 		});
 }
 
+export function register(store, {name, login, password}) {
+	axios
+		.post("http://138.68.74.39/api/register?name=" + name + "&email=" + login + "&password=" + password)
+		.then(function (response) {
+			// handle success
+			console.log(response);
+		})
+		.catch(function (error) {
+			// handle error
+			console.log(error);
+		});
+}
+
 export function getTodoList(store) {
 	axios
 		.get("http://138.68.74.39/api/todolists", store.getters.getHeader)
@@ -28,4 +41,3 @@ export function getTodoList(store) {
 			console.log(error);
 		});
 }
-

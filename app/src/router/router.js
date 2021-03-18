@@ -10,7 +10,7 @@ const routes = [
 		component: Todos
 	},
 	{
-		path: '/connexion',
+		path: '/login',
 		name: 'LoginRegister',
 		component: LoginRegisterVue
 	}
