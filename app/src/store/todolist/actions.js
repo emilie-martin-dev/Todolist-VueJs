@@ -49,7 +49,7 @@ export function getTodosFromListId(store, {listId}) {
 		.get("http://138.68.74.39/api/todos/"+listId, store.getters.getHeader)
 		.then(function (response) {
 			response.data.forEach(element => {
-				store.commit("addTodo", {listId: listId, name: element.name})
+				store.commit("addTodo", {listId: listId, id: element.id, name: element.name})
 			});
 		})
 		.catch(function (error) {

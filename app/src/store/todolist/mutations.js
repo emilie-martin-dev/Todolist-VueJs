@@ -1,11 +1,6 @@
 import {LOCAL_STORAGE_API_TOKEN} from '../../const'
 
 export function deleteTodo(state, {listIndex, todo}){
-	//mise à jour des id suivant la valeur à supprimer
-	for(let i = todo.id; i < state.todolist[listIndex].todos.length; i++){
-		state.todolist[listIndex].todos[i].id -= 1;
-	}
-	//suppression
 	state.todolist[listIndex].todos.splice(state.todolist[listIndex].todos.indexOf(todo), 1);
 }
 
@@ -15,10 +10,10 @@ export function deleteListTodo(state, {list}){
 	}
 }
 
-export function addTodo(state, {listId, name}){
+export function addTodo(state, {listId, id, name}){
 	state.todolist.find(element => element.id == listId).todos.push(
 		{
-			id: listId,
+			id: id,
 			name: name,
 			completed: false
 		}

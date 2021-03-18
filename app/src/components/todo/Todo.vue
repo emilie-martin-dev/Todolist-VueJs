@@ -4,9 +4,9 @@
 			<span v-on:click="transformTodo(selectedList)">{{todolist[selectedList].name}}</span>
 			<a class=" btn-flat"><i v-on:click="deleteListTodo({list: todolist[selectedList]})" class="material-icons">delete</i></a>
 		</h1>
-		<h1 v-show="showInput"><input type='text' :value="todolist[selectedList].name" v-on:keyup.enter="transformTodo(todolist[selectedList].id)" id="todoListName"/> </h1>
+		<h1 v-show="showInput"><input type='text' :value="todolist[selectedList].name" v-on:keyup.enter="transformTodo(selectedList)" id="todoListName"/> </h1>
 
-		<div class="row" v-for="todo in filteredTodosArg" :key="todo.name">
+		<div class="row" v-for="todo in filteredTodosArg" :key="todo.id">
 			<label class="col s1"><input type="checkbox" :id="'checkbox-' + todo.id" v-model=todo.completed><span></span></label>
 			<div class="col s10">
 				<span v-show='number!=todo.id' v-on:click="transform(selectedList, todo)">{{todo.name}}</span>
@@ -19,7 +19,7 @@
 			<div class="input-field col s6">
 				<input placeholder="Ajouter une tâche" id="newTodoName" type="text" v-model="newTodoName"/>
 			</div>
-			<a class="col 3 waves-effect waves-light btn" v-on:click="addTodo({listIndex: todolist[selectedList].id, name: newTodoName}); newTodoName=''"><i class="material-icons left">add</i>Ajouter</a>
+			<a class="col 3 waves-effect waves-light btn" v-on:click="addTodo({listId: todolist[selectedList].id, id: 0, name: newTodoName}); newTodoName=''"><i class="material-icons left">add</i>Ajouter</a>
 		</div>
 
 		<div class="row">

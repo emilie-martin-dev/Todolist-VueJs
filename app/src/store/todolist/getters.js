@@ -6,10 +6,10 @@ export function remaining(state){
 	}
 }
 
-export function remainingList(state){
+export function remainingList(state, getters){
 	let remaining = [];
 	
-	state.todolist.forEach(list => {
+	getters.todolist.forEach(list => {
 		remaining.push(list.todos.filter((todo) => !todo.completed).length);
 	});
 
