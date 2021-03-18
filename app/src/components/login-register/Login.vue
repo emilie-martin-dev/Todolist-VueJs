@@ -17,7 +17,7 @@
 			
 			<div class="row">
 				<div class="col s12 center-align">
-					<a class="waves-effect waves-light btn">Connexion</a>
+					<a class="waves-effect waves-light btn" v-on:click="login(username, password)">Connexion</a>
 				</div>
 			</div>
 		</form>
@@ -26,6 +26,7 @@
 
 <script>
 	import {defineComponent} from 'vue';
+	import {store} from '../../store/store';
 
 	export default defineComponent({
 		name: "login",
@@ -38,7 +39,9 @@
 		},
 
 		methods: {
-
+			login(username, password) {
+				store.dispatch("todolist/login", {login: username, password});
+			}
 		}
 
 	});

@@ -1,5 +1,6 @@
 export default function () {
 	return {
+		token : undefined,
 		todolist: [
 			{
 				id: 0,

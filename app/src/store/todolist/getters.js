@@ -36,3 +36,11 @@ export function filteredTodos(state){
 export function todolist(state){
 	return state.todolist;
 }
+
+export function getToken(state) {
+	return state.token;
+}
+
+export function getHeader(state, getters) {
+	return {headers: {"Authorization": "Bearer " + getters.getToken}};
+}
