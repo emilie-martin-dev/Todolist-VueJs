@@ -34,6 +34,22 @@ export function getTodoList(store) {
 		.then(function (response) {
 			response.data.forEach(element => {
 				store.commit("addListTodo", {id : element.id, name : element.name});
+				
+				store.dispatch("getTodosFromListId", {listId: element.id});
+			});
+		})
+		.catch(function (error) {
+			// handle error
+			console.log(error);
+		});
+}
+
+export function getTodosFromListId(store, {listId}) {
+	axios
+		.get("http://138.68.74.39/api/todos/"+listId, store.getters.getHeader)
+		.then(function (response) {
+			response.data.forEach(element => {
+				store.commit("addTodo", {listId: listId, name: element.name})
 			});
 		})
 		.catch(function (error) {

@@ -19,7 +19,7 @@
 			<div class="input-field col s6">
 				<input placeholder="Ajouter une tâche" id="newTodoName" type="text" v-model="newTodoName"/>
 			</div>
-			<a class="col 3 waves-effect waves-light btn" v-on:click="ajouter({listIndex: selectedList, name: newTodoName}); newTodoName=''"><i class="material-icons left">add</i>Ajouter</a>
+			<a class="col 3 waves-effect waves-light btn" v-on:click="addTodo({listIndex: todolist[selectedList].id, name: newTodoName}); newTodoName=''"><i class="material-icons left">add</i>Ajouter</a>
 		</div>
 
 		<div class="row">
@@ -50,7 +50,7 @@
 		},
 
 		methods: {
-			...mapMutations("todolist", ["deleteTodo", "ajouter","update"]),
+			...mapMutations("todolist", ["deleteTodo", "addTodo","update"]),
 
 			transformTodo(listIndex){
 				this.showInput = !this.showInput;

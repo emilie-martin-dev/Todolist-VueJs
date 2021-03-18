@@ -15,10 +15,10 @@ export function deleteListTodo(state, {list}){
 	}
 }
 
-export function ajouter(state, {listIndex, name}){
-	state.todolist[listIndex].todos.push(
+export function addTodo(state, {listId, name}){
+	state.todolist.find(element => element.id == listId).todos.push(
 		{
-			id: (state.todolist[listIndex].todos.length+1),
+			id: listId,
 			name: name,
 			completed: false
 		}
