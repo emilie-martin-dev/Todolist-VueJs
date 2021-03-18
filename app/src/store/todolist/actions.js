@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "../../router/router";
 
 export function login(store, {login, password}) {
 	axios
@@ -9,6 +10,7 @@ export function login(store, {login, password}) {
 			store.commit("saveToken", response.data.token);
 
 			store.dispatch("getTodoList");
+			router.push("/");
 		})
 		.catch(function (error) {
 			// handle error
