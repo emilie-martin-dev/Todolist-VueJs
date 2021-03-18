@@ -4,8 +4,8 @@
 
 			<div class="row">
 				<div class="input-field col s12">
-					<input placeholder="Nom d'utilisateur" id="username" type="text" v-model="username">
-					<label for="username">Nom d'utilisateur</label>
+					<input placeholder="Votre nom et prénom" id="name" type="text" v-model="name">
+					<label for="name">Votre nom et prénom</label>
 				</div>
 			</div>
 
@@ -53,7 +53,7 @@
 		data () {
 			return {
 				email:"",
-				username:"",
+				name:"",
 				password:"",
 				passwordConfirm:"",
 				passwordMatch :true
@@ -62,10 +62,10 @@
 
 		methods: {
 
-			valider(username, email, password){
+			valider(name, email, password){
 				this.passwordMatch = this.password == this.passwordConfirm
 				if(this.passwordMatch){
-					store.dispatch("todolist/register", {name: username, login: email, password});
+					store.dispatch("todolist/register", {name: name, login: email, password});
 				}
 			}
 

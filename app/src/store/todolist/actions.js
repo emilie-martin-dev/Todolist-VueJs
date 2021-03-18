@@ -10,7 +10,7 @@ export function login(store, {login, password}) {
 			store.commit("saveToken", response.data.token);
 
 			store.dispatch("getTodoList");
-			router.push("/");
+			router.push({name: "Home"});
 		})
 		.catch(function (error) {
 			// handle error
