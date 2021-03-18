@@ -1,3 +1,5 @@
+import {LOCAL_STORAGE_API_TOKEN} from '../../const'
+
 export function remaining(state){
 	return function(listIndex) {
 		return state.todolist[listIndex].todos.filter((todo) => !todo.completed).length
@@ -38,6 +40,10 @@ export function todolist(state){
 }
 
 export function getToken(state) {
+	if(state.token == undefined && LOCAL_STORAGE_API_TOKEN in localStorage) {
+		state.token = localStorage.getItem(LOCAL_STORAGE_API_TOKEN);
+	}
+
 	return state.token;
 }
 

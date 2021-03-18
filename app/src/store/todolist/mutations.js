@@ -1,3 +1,5 @@
+import {LOCAL_STORAGE_API_TOKEN} from '../../const'
+
 export function deleteTodo(state, {listIndex, todo}){
 	//mise à jour des id suivant la valeur à supprimer
 	for(let i = todo.id; i < state.todolist[listIndex].todos.length; i++){
@@ -44,4 +46,5 @@ export function update(state, {listIndex, todo, value}){
 
 export function saveToken(state, token) {
 	state.token = token;
+	localStorage.setItem(LOCAL_STORAGE_API_TOKEN, token);
 }
