@@ -25,10 +25,10 @@ export function ajouter(state, {listIndex, name}){
 	);
 }
 
-export function addListTodo(state, {name}){
+export function addListTodo(state, {id, name}){
 	state.todolist.push(
 		{
-			id:(state.todolist.length),
+			id: id,
 			name: name,
 			todos: []
 		}

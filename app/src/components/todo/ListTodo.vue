@@ -16,6 +16,7 @@
 <script>
 	import {defineComponent} from 'vue';
 	import {mapGetters, mapMutations} from "vuex";
+	import {store} from '../../store/store';
 
 	export default defineComponent({
 		name: "listTodo",
@@ -28,12 +29,16 @@
 			}
 		},
 
-		methods:{
+		methods: {
 			...mapMutations("todolist", ["addListTodo"]),
 
 			updateSelectedlist(){
 				this.$emit("newSelectedList", this.selectedList);
 			}
+		},
+
+		mounted() {
+			store.dispatch("todolist/getTodoList");
 		},
 
 		computed:{

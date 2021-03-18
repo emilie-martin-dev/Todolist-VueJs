@@ -5,11 +5,8 @@ export function login(store, {login, password}) {
 	axios
 		.post("http://138.68.74.39/api/login?email=" + login + "&password=" + password)
 		.then(function (response) {
-			// handle success
-			console.log(response);
 			store.commit("saveToken", response.data.token);
 
-			store.dispatch("getTodoList");
 			router.push({name: "Home"});
 		})
 		.catch(function (error) {
@@ -35,8 +32,9 @@ export function getTodoList(store) {
 	axios
 		.get("http://138.68.74.39/api/todolists", store.getters.getHeader)
 		.then(function (response) {
-			// handle success
-			console.log(response);
+			response.data.forEach(element => {
+				store.commit("addListTodo", {id : element.id, name : element.name});
+			});
 		})
 		.catch(function (error) {
 			// handle error
