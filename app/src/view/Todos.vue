@@ -43,7 +43,7 @@
 		methods: {
 			newListSelected(selectedList) {
 				this.idList = selectedList;
-			},
+			}
 		},
 		computed: {
 			...mapGetters("todolist", ["getToken"]),

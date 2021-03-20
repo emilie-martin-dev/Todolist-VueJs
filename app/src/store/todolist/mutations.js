@@ -47,5 +47,4 @@ export function saveToken(state, token) {
 export function delToken(state){
 	state.token = undefined;
 	localStorage.setItem(LOCAL_STORAGE_API_TOKEN, undefined);
-	console.log(state.token)
 }
