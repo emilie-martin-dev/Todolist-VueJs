@@ -32,7 +32,7 @@ export function addListTodo(state, {id, name}){
 
 export function updateTodoListName(state, {listIndex, value}){
 	state.todolist[listIndex].name = value;
-	
+
 }
 
 export function update(state, {listIndex, todo, value}){
@@ -42,4 +42,10 @@ export function update(state, {listIndex, todo, value}){
 export function saveToken(state, token) {
 	state.token = token;
 	localStorage.setItem(LOCAL_STORAGE_API_TOKEN, token);
+}
+
+export function delToken(state){
+	state.token = undefined;
+	localStorage.setItem(LOCAL_STORAGE_API_TOKEN, undefined);
+	console.log(state.token)
 }

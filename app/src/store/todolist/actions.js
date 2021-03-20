@@ -34,7 +34,7 @@ export function getTodoList(store) {
 		.then(function (response) {
 			response.data.forEach(element => {
 				store.commit("addListTodo", {id : element.id, name : element.name});
-				
+
 				store.dispatch("getTodosFromListId", {listId: element.id});
 			});
 		})
