@@ -1,9 +1,9 @@
 <template>
-
-	<h1 class="teal-text darken-4"> Vous êtes déconnecté </h1>
-	<p> Appuyer sur ce bouton pour vous connectez:</p>
-	<a class="btn"  v-on:click="redirection()"> Connexion</a>
-
+	<div>
+		<h1 class="teal-text darken-4"> Vous êtes déconnecté </h1>
+		<p> Appuyer sur ce bouton pour vous connectez:</p>
+		<a class="btn"  v-on:click="redirection()"> Connexion</a>
+	</div>
 </template>
 
 <script>
@@ -15,7 +15,7 @@
 
 		methods: {
 			redirection(){
-				router.push('/login');
+				router.push({name: "LoginRegister"});
 			}
 		}
 	})
