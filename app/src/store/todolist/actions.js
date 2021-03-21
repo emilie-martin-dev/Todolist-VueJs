@@ -49,7 +49,7 @@ export function getTodosFromListId(store, {listId}) {
 		.get("http://138.68.74.39/api/todos/"+listId, store.getters.getHeader)
 		.then(function (response) {
 			response.data.forEach(element => {
-				store.commit("addTodo", {listId: listId, id: element.id, name: element.name})
+				store.commit("addTodo", {listId: listId, id: element.id, name: element.name , completed: element.completed})
 			});
 		})
 		.catch(function (error) {
@@ -57,15 +57,24 @@ export function getTodosFromListId(store, {listId}) {
 			console.log(error);
 		});
 }
+export function updateCompleted(store, {id, name, completed, listId}) {
+	axios
+		.post("http://138.68.74.39/api/completeTodo/"+ id +"?name=" +name+"&completed="+ completed+"&todolist_id="+ listId, {}, store.getters.getHeader)
+		.then(function (){
+			store.commit("update", {listId: listId, todo: id, value: name, completed: completed})
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+}
 
-export function updtadeTodos(store, {id, name, completed, listId}) {
+export function updateTodos(store, {id, name, completed, listId}) {
 	axios
 		.patch("http://138.68.74.39/api/todo/"+ id +"?name=" +name+"&completed="+ completed+"&todolist_id="+ listId, {}, store.getters.getHeader)
 		.then(function (){
-			store.commit("update", {listId: listId, todo: id, value: name})
+			store.commit("update", {listId: listId, todo: id, value: name, completed: completed})
 		})
 		.catch(function (error) {
-			// handle error
 			console.log(error);
 		});
 }

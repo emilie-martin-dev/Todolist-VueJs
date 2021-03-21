@@ -10,12 +10,12 @@ export function deleteListTodo(state, {list}){
 	}
 }
 
-export function addTodo(state, {listId, id, name}){
+export function addTodo(state, {listId, id, name, completed}){
 	state.todolist.find(element => element.id == listId).todos.push(
 		{
 			id: id,
 			name: name,
-			completed: false
+			completed: completed==1
 		}
 	);
 }
@@ -32,12 +32,12 @@ export function addListTodo(state, {id, name}){
 
 export function updateTodoListName(state, {listIndex, value}){
 	state.todolist[listIndex].name = value;
-
 }
 
-export function update(state, {listId, todo, value}){
+export function update(state, {listId, todo, value, completed}){
 	let list = state.todolist.find(element => element.id == listId)
 	list.todos[list.todos.indexOf(list.todos.find(element => element.id == todo))].name = value;
+	list.todos[list.todos.indexOf(list.todos.find(element => element.id == todo))].completed = completed ==1;
 }
 
 export function saveToken(state, token) {

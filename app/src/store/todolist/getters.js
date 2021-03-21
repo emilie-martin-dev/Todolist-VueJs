@@ -43,7 +43,6 @@ export function getToken(state) {
 	if(state.token == undefined && LOCAL_STORAGE_API_TOKEN in localStorage) {
 		state.token = localStorage.getItem(LOCAL_STORAGE_API_TOKEN);
 	}
-
 	return state.token;
 }
 
