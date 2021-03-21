@@ -80,6 +80,10 @@
 				}
 
 				store.commit("todolist/deleteListTodo", {list :list});
+			},
+
+			deleteTodo({listIndex, todo}){
+				store.dispatch("todolist/delTodo", {listIndex : listIndex, todo : todo});
 			}
 		},
 

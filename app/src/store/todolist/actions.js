@@ -79,3 +79,15 @@ export function updateTodos(store, {id, name, completed, listId}) {
 			console.log(error);
 		});
 }
+
+
+export function delTodo(store, {listIndex, todo}) {
+	axios
+		.delete("http://138.68.74.39/api/todo/"+ todo.id, store.getters.getHeader)
+		.then(function (){
+			store.commit("deleteTodo", {listIndex: listIndex, todo: todo})
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+}
