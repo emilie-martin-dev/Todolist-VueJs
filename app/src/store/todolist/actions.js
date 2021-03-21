@@ -60,9 +60,9 @@ export function getTodosFromListId(store, {listId}) {
 
 export function updtadeTodos(store, {id, name, completed, listId}) {
 	axios
-		.patch("http://138.68.74.39/api/todo/"+ id +"?name=" +name+"&completed="+ completed+"&todolist_id="+ listId, store.getters.getHeader)
+		.patch("http://138.68.74.39/api/todo/"+ id +"?name=" +name+"&completed="+ completed+"&todolist_id="+ listId, {}, store.getters.getHeader)
 		.then(function (){
-			store.commit("update", {listIndex: listId, todo: id, value: name})
+			store.commit("update", {listId: listId, todo: id, value: name})
 		})
 		.catch(function (error) {
 			// handle error

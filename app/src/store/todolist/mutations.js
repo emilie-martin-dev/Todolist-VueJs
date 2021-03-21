@@ -35,8 +35,9 @@ export function updateTodoListName(state, {listIndex, value}){
 
 }
 
-export function update(state, {listIndex, todo, value}){
-	state.todolist[listIndex].todos[state.todolist[listIndex].todos.indexOf(todo)].name = value;
+export function update(state, {listId, todo, value}){
+	let list = state.todolist.find(element => element.id == listId)
+	list.todos[list.todos.indexOf(list.todos.find(element => element.id == todo))].name = value;
 }
 
 export function saveToken(state, token) {
