@@ -44,5 +44,9 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "main": "babel.config.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

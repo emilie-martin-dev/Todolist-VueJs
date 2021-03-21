@@ -54,7 +54,6 @@
 
 			transformTodo(listIndex){
 				this.showInput = !this.showInput;
-
 				if(this.showInput == false){
 					let input = document.getElementById("todoListName");
 
@@ -63,10 +62,17 @@
 			},
 
 			transform(listIndex, todo){
+				let completed =  document.getElementById('checkbox-' + todo.id).checked;
+				if (completed == true){
+					completed = 1;
+				}
+				else{
+					completed = 0;
+				}
 				if(this.number == todo.id){
 					this.number = -1;
 					let input = document.getElementById(todo.id);
-					store.commit('todolist/update', {listIndex: listIndex, todo: todo, value: input.value});
+					store.dispatch("todolist/updtadeTodos", {id: todo.id, name: input.value, completed: completed,listId: this.todolist[this.selectedList].id});
 				} else {
 					this.number = todo.id;
 				}
@@ -76,11 +82,11 @@
 				if(store.getters.["todolist/todolist"].length-1 == this.selectedList){
 					this.selectedList--;
 				}
-				
+
 				store.commit("todolist/deleteListTodo", {list :list});
 			}
 		},
-		
+
 		props: {
 			idListTodo: {
 				type: Number,

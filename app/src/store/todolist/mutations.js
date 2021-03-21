@@ -32,7 +32,7 @@ export function addListTodo(state, {id, name}){
 
 export function updateTodoListName(state, {listIndex, value}){
 	state.todolist[listIndex].name = value;
-	
+
 }
 
 export function update(state, {listIndex, todo, value}){
