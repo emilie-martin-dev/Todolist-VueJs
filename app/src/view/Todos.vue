@@ -1,10 +1,10 @@
 <template>
-	<div class="container row" v-if="this.getToken == 'undefined'">
+	<div class="container row" v-if="this.getToken == undefined">
 		<div class="center-align">
 			<unlog />
 		</div>
 	</div>
-	<div class="container row" v-if="this.getToken != 'undefined' ">
+	<div class="container row" v-if="this.getToken != undefined ">
 
 		<div class="col s12 l4">
 			<listTodo @newSelectedList="newListSelected"/>
