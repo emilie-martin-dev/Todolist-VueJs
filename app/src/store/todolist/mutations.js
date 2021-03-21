@@ -15,7 +15,7 @@ export function addTodo(state, {listId, id, name, completed}){
 		{
 			id: id,
 			name: name,
-			completed: completed==1
+			completed: completed
 		}
 	);
 }

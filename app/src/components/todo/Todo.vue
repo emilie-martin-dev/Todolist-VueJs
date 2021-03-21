@@ -62,26 +62,16 @@
 			},
 
 			transform(listIndex, todo){
-				let completed =  document.getElementById('checkbox-' + todo.id).checked;
-				if (completed == true){
-					completed = 1;
-				}
-				else{
-					completed = 0;
-				}
 				if(this.number == todo.id){
 					this.number = -1;
 					let input = document.getElementById(todo.id);
-					store.dispatch("todolist/updateTodos", {id: todo.id, name: input.value, completed: completed, listId: this.todolist[this.selectedList].id});
+					store.dispatch("todolist/updateTodos", {id: todo.id, name: input.value, completed: todo.completed, listId: this.todolist[this.selectedList].id});
 				} else {
 					this.number = todo.id;
 				}
 			},
 			completed(listIndex, todo){
-
-				let input = document.getElementById(todo.id);
-				store.dispatch("todolist/updateCompleted", {id: todo.id, name: input.value, completed: !todo.completed, listId: this.todolist[this.selectedList].id});
-
+				store.dispatch("todolist/updateCompleted", {id: todo.id, name: todo.name, completed: !todo.completed, listId: this.todolist[this.selectedList].id});
 			},
 
 			deleteListTodo({list}){
