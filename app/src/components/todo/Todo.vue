@@ -50,7 +50,7 @@
 		},
 
 		methods: {
-			...mapMutations("todolist", ["deleteTodo", "addTodo","update"]),
+			...mapMutations("todolist", ["deleteTodo","deleteListTodos", "addTodo","update"]),
 
 			transformTodo(listIndex){
 				this.showInput = !this.showInput;
@@ -76,11 +76,10 @@
 				if(store.getters.["todolist/todolist"].length-1 == this.selectedList){
 					this.selectedList--;
 				}
-				
-				store.commit("todolist/deleteListTodo", {list :list});
+				store.dispatch("todolist/delListTodo", {list :list});
 			}
 		},
-		
+
 		props: {
 			idListTodo: {
 				type: Number,
