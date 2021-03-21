@@ -59,7 +59,7 @@ export function getTodosFromListId(store, {listId}) {
 }
 export function updateCompleted(store, {id, name, completed, listId}) {
 	axios
-		.post("http://138.68.74.39/api/completeTodo/"+ id +"?name=" +name+"&completed="+ completed+"&todolist_id="+ listId, {}, store.getters.getHeader)
+		.post("http://138.68.74.39/api/completeTodo/"+ id +"?name=" +name+"&completed="+ (completed ? 1 : 0)+"&todolist_id="+ listId, {}, store.getters.getHeader)
 		.then(function (){
 			store.commit("update", {listId: listId, todo: id, value: name, completed: completed})
 		})
