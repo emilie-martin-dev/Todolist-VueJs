@@ -71,7 +71,7 @@ export function updateCompleted(store, {id, name, completed, listId}) {
 
 export function updateTodos(store, {id, name, completed, listId}) {
 	axios
-		.patch("http://138.68.74.39/api/todo/"+ id +"?name=" +name+"&completed="+ completed+"&todolist_id="+ listId, {}, store.getters.getHeader)
+		.patch("http://138.68.74.39/api/todo/"+ id +"?name=" +name, {}, store.getters.getHeader)
 		.then(function (){
 			store.commit("update", {listId: listId, todo: id, value: name, completed: completed})
 		})
