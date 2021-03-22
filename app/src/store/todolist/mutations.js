@@ -37,3 +37,7 @@ export function update(state, {listId, todo, value, completed}){
 	list.todos[list.todos.indexOf(list.todos.find(element => element.id == todo))].name = value;
 	list.todos[list.todos.indexOf(list.todos.find(element => element.id == todo))].completed = completed ==1;
 }
+
+export function restList(state){
+	state.todolist = [];
+}

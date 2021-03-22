@@ -2,7 +2,6 @@ import {LOCAL_STORAGE_API_TOKEN} from '../../const'
 
 export function saveToken(state, token) {
 	state.token = token;
-	state.todolist = [];
 	localStorage.setItem(LOCAL_STORAGE_API_TOKEN, token);
 }
 
