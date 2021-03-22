@@ -31,7 +31,7 @@
 
 		methods: {
 			...mapActions("todolist", ["addListTodos"]),
-			...mapMutations("todolist", ["delToken"]),
+			...mapMutations("store", ["delToken"]),
 
 			updateSelectedlist(){
 				this.$emit("newSelectedList", this.selectedList);

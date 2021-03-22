@@ -40,7 +40,7 @@
 
 		methods: {
 			login(username, password) {
-				store.dispatch("todolist/login", {login: username, password});
+				store.dispatch("login/login", {login: username, password});
 			}
 		}
 

@@ -65,7 +65,7 @@
 			valider(name, email, password){
 				this.passwordMatch = this.password == this.passwordConfirm
 				if(this.passwordMatch){
-					store.dispatch("todolist/register", {name: name, login: email, password});
+					store.dispatch("login/register", {name: name, login: email, password});
 				}
 			}
 

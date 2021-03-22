@@ -1,5 +1,3 @@
-import {LOCAL_STORAGE_API_TOKEN} from '../../const'
-
 export function deleteTodo(state, {listIndex, todo}){
 	state.todolist[listIndex].todos.splice(state.todolist[listIndex].todos.indexOf(todo), 1);
 }
@@ -38,15 +36,4 @@ export function update(state, {listId, todo, value, completed}){
 	let list = state.todolist.find(element => element.id == listId)
 	list.todos[list.todos.indexOf(list.todos.find(element => element.id == todo))].name = value;
 	list.todos[list.todos.indexOf(list.todos.find(element => element.id == todo))].completed = completed ==1;
-}
-
-export function saveToken(state, token) {
-	state.token = token;
-	state.todolist = [];
-	localStorage.setItem(LOCAL_STORAGE_API_TOKEN, token);
-}
-
-export function delToken(state){
-	localStorage.removeItem(LOCAL_STORAGE_API_TOKEN);
-	state.token = undefined;
 }

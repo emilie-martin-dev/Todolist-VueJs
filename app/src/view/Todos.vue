@@ -46,7 +46,7 @@
 			}
 		},
 		computed: {
-			...mapGetters("todolist", ["getToken"]),
+			...mapGetters("login", ["getToken"]),
 		}
 	});
 </script>

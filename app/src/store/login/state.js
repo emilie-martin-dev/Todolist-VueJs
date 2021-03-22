@@ -1,7 +1,5 @@
 export default function () {
 	return {
-		todolist: [
-			
-		]
+		token : undefined
 	}
 }
