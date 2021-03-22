@@ -42,6 +42,7 @@ export function update(state, {listId, todo, value, completed}){
 
 export function saveToken(state, token) {
 	state.token = token;
+	state.todolist = [];
 	localStorage.setItem(LOCAL_STORAGE_API_TOKEN, token);
 }
 
