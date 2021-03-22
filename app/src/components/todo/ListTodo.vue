@@ -1,5 +1,5 @@
 <template>
-	<h1>&nbsp;</h1>
+	<h1><a class="btn" v-on:click="delToken()"> <i class="material-icons left">exit_to_app</i> Déconnexion</a></h1>
 	<div class="collection">
 		<a v-for="(list, index) in todolist" :key="list.id" href="#" v-on:click.prevent="selectedList = index" v-bind:class="[selectedList == index ? 'active': '']" class="collection-item" v-on:click="updateSelectedlist">
 			<span class="badge">{{remainingList[index]}} restant(s)</span> {{list.name}}
@@ -30,7 +30,7 @@
 		},
 
 		methods: {
-			...mapMutations("todolist", ["addListTodo"]),
+			...mapMutations("todolist", ["addListTodo", "delToken"]),
 
 			updateSelectedlist(){
 				this.$emit("newSelectedList", this.selectedList);

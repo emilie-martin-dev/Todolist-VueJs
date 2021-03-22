@@ -7,7 +7,7 @@
 		<h1 v-show="showInput"><input type='text' :value="todolist[selectedList].name" v-on:keyup.enter="transformTodo(selectedList)" id="todoListName"/> </h1>
 
 		<div class="row" v-for="todo in filteredTodosArg" :key="todo.id">
-			<label class="col s1"><input type="checkbox" :id="'checkbox-' + todo.id" v-model=todo.completed><span></span></label>
+			<label class="col s1"><input type="checkbox" :id="'checkbox-' + todo.id" v-model="todo.completed" v-on:click="completed(selectedList, todo)"><span></span></label>
 			<div class="col s10">
 				<span v-show='number!=todo.id' v-on:click="transform(selectedList, todo)">{{todo.name}}</span>
 				<input v-show='number==todo.id' v-on:keyup.enter="transform(selectedList, todo)"  type='text' :value="todo.name" v-bind:id="todo.id"/>
@@ -54,7 +54,6 @@
 
 			transformTodo(listIndex){
 				this.showInput = !this.showInput;
-
 				if(this.showInput == false){
 					let input = document.getElementById("todoListName");
 
@@ -66,17 +65,25 @@
 				if(this.number == todo.id){
 					this.number = -1;
 					let input = document.getElementById(todo.id);
-					store.commit('todolist/update', {listIndex: listIndex, todo: todo, value: input.value});
+					store.dispatch("todolist/updateTodos", {id: todo.id, name: input.value, completed: todo.completed, listId: this.todolist[this.selectedList].id});
 				} else {
 					this.number = todo.id;
 				}
+			},
+			completed(listIndex, todo){
+				store.dispatch("todolist/updateCompleted", {id: todo.id, name: todo.name, completed: !todo.completed, listId: this.todolist[this.selectedList].id});
 			},
 
 			deleteListTodo({list}){
 				if(store.getters.["todolist/todolist"].length-1 == this.selectedList){
 					this.selectedList--;
 				}
+
 				store.dispatch("todolist/delListTodo", {list :list});
+			},
+
+			deleteTodo({listIndex, todo}){
+				store.dispatch("todolist/delTodo", {listIndex : listIndex, todo : todo});
 			}
 		},
 
