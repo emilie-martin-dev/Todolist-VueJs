@@ -50,7 +50,7 @@
 		},
 
 		methods: {
-			...mapMutations("todolist", ["deleteTodo","deleteListTodos", "addTodo","update"]),
+			...mapMutations("todolist", ["deleteTodo", "addTodo","update"]),
 
 			transformTodo(listIndex){
 				this.showInput = !this.showInput;
