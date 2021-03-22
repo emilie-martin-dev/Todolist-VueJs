@@ -1,9 +1,5 @@
 # Présentation
 
-
-
-# Objectifs de l'application
-
 L’objectif du projet est de réaliser une application de gestion de tâches (todolist) complète, en Vue.js uniquement (pas de ionic).
 
 L’application permettra de : 
@@ -19,22 +15,43 @@ L’application permettra de :
 
 # Compilation du projet
 
+/!\\ Ces commandes sont a faire dans le dossier app
 
+Pour installer les dépendances du projet :
+
+```bash
+npm install
+```
+
+Pour démarer le serveur en mode developement :
+
+```bash
+npm run serve
+```
+
+Pour compiler le projet en mode production :
+
+```bash
+npm run build
+```
+
+Le projet sera dispo sous "app/dist"
 
 # Structuration du projet
 
-Le projet comporte les dossiers suivants :
+Le projet comporte le dossier suivant :
 - app → Contient le code source de l'application
-- doc → Regroupe les différents documents importants du projet
 
 # Bibliothèques / Framework utilisées
 
 - NodeJs
-- VueJs 3
+- VueJs 3 (+ VueX et VueRouter)
+- Axios
+- Materialize
 
 # Collaborateurs
 
-Le projet étant réalisé en groupe, voici la liste des personnes affectées sur celui-ci :
+Le projet étant réalisé en groupe (numéro 12), voici la liste des personnes affectées sur celui-ci :
 
 - Auréline DEROUIN ([@Norah72](https://github.com/Norah72))
 - Paul LEBRANCHU ([@Paul-Lebranchu](https://github.com/Paul-Lebranchu))
