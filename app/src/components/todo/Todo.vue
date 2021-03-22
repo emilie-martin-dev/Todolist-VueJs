@@ -19,7 +19,7 @@
 			<div class="input-field col s6">
 				<input placeholder="Ajouter une tâche" id="newTodoName" type="text" v-model="newTodoName"/>
 			</div>
-			<a class="col 3 waves-effect waves-light btn" v-on:click="addTodos({listId: todolist[selectedList].id, id: 0, name: newTodoName}); newTodoName=''"><i class="material-icons left">add</i>Ajouter</a>
+			<a class="col 3 waves-effect waves-light btn" v-on:click="addTodos({listId: todolist[selectedList].id, name: newTodoName}); newTodoName=''"><i class="material-icons left">add</i>Ajouter</a>
 		</div>
 
 		<div class="row">

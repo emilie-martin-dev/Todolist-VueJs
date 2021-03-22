@@ -77,22 +77,22 @@ export function delListTodo(store, {list}) {
 		});
 }
 
-export function addListTodos(store, {id, name}) {
+export function addListTodos(store, {name}) {
 	axios
 		.post("http://138.68.74.39/api/todolist?name=" + name, {}, store.getters.getHeader)
-		.then(function (){
-			store.commit("addListTodo", {id: id, name: name})
+		.then(function (response){
+			store.commit("addListTodo", {id: response.data.id, name: name})
 		})
 		.catch(function (error) {
 			console.log(error);
 		});
 }
 
-export function addTodos(store, {listId, id, name}) {
+export function addTodos(store, {listId, name}) {
 	axios
 		.post("http://138.68.74.39/api/todo?name=" + name + "&completed="+ 0 + "&todolist_id=" + listId, {}, store.getters.getHeader)
-		.then(function (){
-			store.commit("addTodo", {listId: listId, id: id, name: name, completed: false})
+		.then(function (response){
+			store.commit("addTodo", {listId: listId, id: response.data.id, name: name, completed: false})
 		})
 		.catch(function (error) {
 			console.log(error);
