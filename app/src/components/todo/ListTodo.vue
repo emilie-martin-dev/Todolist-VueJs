@@ -9,13 +9,13 @@
 		<div class="input-field col s6">
 			<input placeholder="Ajouter une liste" id="newListName" type="text" v-model="newListName"/>
 		</div>
-		<a class="col 3 waves-effect waves-light btn" v-on:click="addListTodo({name: newListName}); newListName=''"><i class="material-icons left">add</i>Ajouter</a>
+		<a class="col 3 waves-effect waves-light btn" v-on:click="addListTodos({name: newListName}); newListName=''"><i class="material-icons left">add</i>Ajouter</a>
 	</div>
 </template>
 
 <script>
 	import {defineComponent} from 'vue';
-	import {mapGetters, mapMutations} from "vuex";
+	import {mapGetters, mapMutations, mapActions} from "vuex";
 	import {store} from '../../store/store';
 
 	export default defineComponent({
@@ -30,7 +30,8 @@
 		},
 
 		methods: {
-			...mapMutations("todolist", ["addListTodo", "delToken"]),
+			...mapActions("todolist", ["addListTodos"]),
+			...mapMutations("todolist", ["delToken"]),
 
 			updateSelectedlist(){
 				this.$emit("newSelectedList", this.selectedList);

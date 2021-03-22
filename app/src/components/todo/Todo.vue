@@ -19,7 +19,7 @@
 			<div class="input-field col s6">
 				<input placeholder="Ajouter une tâche" id="newTodoName" type="text" v-model="newTodoName"/>
 			</div>
-			<a class="col 3 waves-effect waves-light btn" v-on:click="addTodo({listId: todolist[selectedList].id, id: 0, name: newTodoName}); newTodoName=''"><i class="material-icons left">add</i>Ajouter</a>
+			<a class="col 3 waves-effect waves-light btn" v-on:click="addTodos({listId: todolist[selectedList].id, id: 0, name: newTodoName}); newTodoName=''"><i class="material-icons left">add</i>Ajouter</a>
 		</div>
 
 		<div class="row">
@@ -33,7 +33,7 @@
 
 <script>
 	import {defineComponent} from 'vue';
-	import {mapMutations, mapGetters} from "vuex";
+	import {mapMutations, mapGetters, mapActions} from "vuex";
 	import {store} from '../../store/store';
 
 	export default defineComponent({
@@ -50,7 +50,8 @@
 		},
 
 		methods: {
-			...mapMutations("todolist", ["deleteTodo", "addTodo","update"]),
+			...mapActions("todolist", ["addTodos"]),
+			...mapMutations("todolist", ["deleteTodo","update"]),
 
 			transformTodo(listIndex){
 				this.showInput = !this.showInput;

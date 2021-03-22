@@ -105,4 +105,25 @@ export function delListTodo(store, {list}) {
 			console.log(error);
 		});
 }
-	
+
+export function addListTodos(store, {id, name}) {
+	axios
+		.post("http://138.68.74.39/api/todolist?name=" + name, {}, store.getters.getHeader)
+		.then(function (){
+			store.commit("addListTodo", {id: id, name: name})
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+}
+
+export function addTodos(store, {listId, id, name}) {
+	axios
+		.post("http://138.68.74.39/api/todo?name=" + name + "&completed="+ 0 + "&todolist_id=" + listId, {}, store.getters.getHeader)
+		.then(function (){
+			store.commit("addTodo", {listId: listId, id: id, name: name, completed: false})
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+}
