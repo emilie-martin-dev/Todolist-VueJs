@@ -2,7 +2,7 @@
 
 L’objectif du projet est de réaliser une application de gestion de tâches (todolist) complète, en Vue.js uniquement (pas de ionic).
 
-L’application permettra de : 
+L’application permettra de :
 
 - Créer un compte ou s’authentifier à l'API pour récupérer ses informations et un token de connexion (qui sera utiliser dans tous les autres appels API)
 - Créer une liste
@@ -53,7 +53,7 @@ Le projet comporte le dossier suivant :
 
 Le projet étant réalisé en groupe (numéro 12), voici la liste des personnes affectées sur celui-ci :
 
-- Auréline DEROUIN ([@Norah72](https://github.com/Norah72))
-- Paul LEBRANCHU ([@Paul-Lebranchu](https://github.com/Paul-Lebranchu))
-- Raphaëlle LEMAIRE ([@seirihiri](https://github.com/seirihiri))
-- Justine MARTIN ([@jmartin-pro](https://github.com/jmartin-pro))
+- Auréline DEROUIN ([@Norah72](https://github.com/Norah72)) - 21806986
+- Paul LEBRANCHU ([@Paul-Lebranchu](https://github.com/Paul-Lebranchu)) - 21403460
+- Raphaëlle LEMAIRE ([@seirihiri](https://github.com/seirihiri)) - 21802756
+- Justine MARTIN ([@jmartin-pro](https://github.com/jmartin-pro)) - 21909920
