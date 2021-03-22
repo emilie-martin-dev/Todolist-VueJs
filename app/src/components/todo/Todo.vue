@@ -65,7 +65,7 @@
 				if(this.number == todo.id){
 					this.number = -1;
 					let input = document.getElementById(todo.id);
-					store.dispatch("todolist/updateTodos", {id: todo.id, name: input.value, completed: todo.completed, listId: this.todolist[this.selectedList].id});
+					store.dispatch("todolist/updateTodos", {id: todo.id, name: input.value});
 				} else {
 					this.number = todo.id;
 				}
